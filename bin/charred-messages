@@ -12,6 +12,7 @@ room.listen do |m|
     print green { bold { m.user.name } }
     print blue { bold { ": " } }
     print white { m.body }, "\n"
+    system("tmux display-message '#{m.user.name}: #{m.body}'")
   else
     print red { "unhandled message #{m.inspect} \n" }
   end

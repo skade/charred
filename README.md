@@ -1,6 +1,6 @@
 # Charred
 
-A campfire client in 33 lines. Needs TMUX. Splits your current pane.
+A campfire client in 34 lines. Needs TMUX. Splits your current pane.
 
 ## Installation
 
