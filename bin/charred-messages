@@ -1,0 +1,18 @@
+require 'tinder'
+require 'term/ansicolor'
+
+include Term::ANSIColor
+
+campfire = Tinder::Campfire.new ARGV[0], :token => ARGV[1]
+
+room = campfire.rooms.first
+
+room.listen do |m|
+  if m.type == "TextMessage"
+    print green { bold { m.user.name } }
+    print blue { bold { ": " } }
+    print white { m.body }, "\n"
+  else
+    print red { "unhandled message #{m.inspect} \n" }
+  end
+end

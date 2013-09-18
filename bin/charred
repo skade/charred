@@ -1,0 +1,3 @@
+system("tmux splitw -v -l 0 'charred-input #{ARGV.join(' ')}'")
+system("clear")
+exec("charred-messages #{ARGV.join(' ')}")

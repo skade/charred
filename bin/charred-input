@@ -1,0 +1,12 @@
+require 'readline'
+require 'tinder'
+
+campfire = Tinder::Campfire.new ARGV[0], :token => ARGV[1]
+
+room = campfire.rooms.first
+room.join
+
+while text = Readline.readline("> ", false)
+  room.speak(text)
+  system("clear")
+end
