@@ -1,5 +1,6 @@
 require 'tinder'
 require 'term/ansicolor'
+require 'shellwords'
 
 include Term::ANSIColor
 
@@ -12,7 +13,8 @@ room.listen do |m|
     print green { bold { m.user.name } }
     print blue { bold { ": " } }
     print white { m.body }, "\n"
-    system("tmux display-message '#{m.user.name}: #{m.body}'")
+    message = Shellwords.escape(m.user.name + ": " + m.body)
+    system("tmux display-message #{message}")
   else
     print red { "unhandled message #{m.inspect} \n" }
   end
