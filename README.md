@@ -1,24 +1,22 @@
 # Charred
 
-TODO: Write a gem description
+A campfire client in 33 lines. Needs TMUX. Splits your current pane.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'charred'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install charred
+```
+gem install charred
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+charred <subdomain> <token>
+```
+
+## TODO
+
+Allow user to choose a room.
 
 ## Contributing
 
