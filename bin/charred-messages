@@ -1,20 +1,11 @@
-require 'tinder'
-require 'term/ansicolor'
-require 'shellwords'
-
+require 'charred'
+%w(term/ansicolor shellwords).each {|l| require l }
 include Term::ANSIColor
-
-campfire = Tinder::Campfire.new ARGV[0], :token => ARGV[1]
-
-room = campfire.rooms.first
 
 def handle_message(m, display = true )
   if m.type == "TextMessage"
-    print green { bold { m.user.name } }
-    print blue { bold { ": " } }
-    print white { m.body }, "\n"
-    message = Shellwords.escape(m.user.name + ": " + m.body)
-    system("tmux display-message #{message}") if display
+    print green { bold { m.user.name } }, blue { bold { ": " } }, white { m.body }, "\n"
+    system("tmux display-message #{Shellwords.escape(m.user.name + ": " + m.body)}") if display
   elsif m.type == "TimestampMessage"
     print yellow { bold { m.created_at.strftime("%T") } }, "\n"
   else
@@ -22,5 +13,8 @@ def handle_message(m, display = true )
   end
 end
 
-room.recent.each { |m| handle_message(m, false) }
-room.listen { |m| handle_message(m) }
+Charred.room.join
+Charred.room.recent.each { |m| handle_message(m, false) }
+Charred.room.listen { |m| handle_message(m) }
+
+trap("SIGINT") { Charred.room.leave }

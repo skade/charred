@@ -1,12 +1,6 @@
-require 'readline'
-require 'tinder'
-
-campfire = Tinder::Campfire.new ARGV[0], :token => ARGV[1]
-
-room = campfire.rooms.first
-room.join
+require 'charred'
 
 while text = Readline.readline("> ", false)
-  room.speak(text)
-  system("clear")
+  Charred.room.speak(text)
+  text.chomp == "/exit" ? `tmux kill-window` : system("clear")
 end
