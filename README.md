@@ -1,6 +1,6 @@
 # Charred
 
-An experimental campfire client in 35 lines. Needs TMUX. Splits your current pane. Kills your current window on exit.
+An experimental campfire client in 35 lines. Needs to be run in TMUX. Splits your current pane. Kills your current window on exit.
 
 ## Installation
 
